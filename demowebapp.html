@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Domine:wght@400..700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <script src="weatherdata.js" defer></script>
+    <title>uWeather - Demo Web App</title>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">uWeather</a>
+            <ul class="nav-links">
+                <li><a href="demowebapp.html">Weather</a></li>
+                <li><a href="aitools.html">✨ Dress Me</a></li>
+                <li><a href="invest.html">Invest</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="currentcontainer">
+        <div class="currentweather">
+            <h1 onloadeddata="getLocation()" id="cityname">Frankfurt</h1>
+            <div class="weatherdisplay">
+                <img height="100px" width="100px" src="public/sunny_light.png" alt="Sunny Icon" />
+                <div class="lines">
+                    <p id="wthr">____</p>
+                    <p id="feel">feels like: </p>
+                </div>
+            </div>
+            <h3 id="wdescription">Clear Sky</h3>
+        </div>
+        <div class="hourlyforecast">
+            <h2>Hourly Forecast</h2>
+            <div class="hourlycards" id="hourlycards">
+                <!-- Hourly forecast cards will be populated here by JavaScript -->
+                 
+            </div>
+        </div>
+    </div>
+</body>
+</html>
