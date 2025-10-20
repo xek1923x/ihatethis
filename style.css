@@ -312,6 +312,12 @@ footer {
     border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
+.cards {
+    height: 200px;
+    overflow-y: scroll;
+    padding-bottom: 10px;
+}
+
 .hourlyforecast {
     height: 300px;
     margin: 100px 50px;
@@ -347,6 +353,24 @@ footer {
 .lines {
     display: block;
     gap: 10px;
+}
+
+.hourlycards {
+    padding-bottom: 10px;
+}
+
+.hourlycard {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    width: 90%;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    margin-bottom: 20px;
 }
 
 @keyframes fadeInUp {

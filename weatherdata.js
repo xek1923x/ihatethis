@@ -14,7 +14,7 @@ async function getLocation() {
 }
 
 async function getCurrentWeather(lat, lon) {
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code,apparent_temperature&timezone=auto`;
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code,is_day,apparent_temperature&timezone=auto`;
 
     try {
         const response = await fetch(url);
@@ -35,7 +35,7 @@ async function getCurrentWeather(lat, lon) {
 getLocation();
 
 async function getHourlyWeather(lat, lon, currentHour) {
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,weather_code&timezone=auto&forecast_days=3`;
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,weather_code,is_day&timezone=auto&forecast_days=3`;
     
     try {
         const response = await fetch(url);
@@ -68,6 +68,15 @@ async function renderHourly(hourlyData, currentHour) {
         time.className = "hourlytime";
         time.innerText = `${hour}:00`;
 
+        const weathericon = document.createElement("div");
+        weathericon.className = "hourlyicon";
+        const iconcode = getWeatherIcon(hourlyData.weather_code[i], hourlyData.is_day[i]);
+        const img = document.createElement("img");
+        img.src = `${iconcode}`;
+        img.alt = "Weather Icon";
+        weathericon.appendChild(img);
+        card.appendChild(weathericon);
+
         const temp = document.createElement("div");
         temp.className = "hourlytemp";
         temp.innerText = `${Math.round(hourlyData.temperature_2m[i])}°C`;
@@ -77,3 +86,28 @@ async function renderHourly(hourlyData, currentHour) {
         hourlyContainer.appendChild(card);
     }
 }
+
+
+function getWeatherIcon(code, isDay) {
+    if (isDay == 0) {
+        if (code == 0) return "/public/moon.png";
+        else if (code == 1 || code == 2 || code == 3) return "/public/cloudy.png";
+        else if (code >= 45 && code <= 48) return "/public/fog.png";
+        else if (code >= 51 && code <= 57) return "/public/lightrain1.png";
+        else if (code >= 61 && code <= 67) return "/public/rain.png";
+        else if (code >= 71 && code <= 77) return "/public/snowatnight.png";
+        else if (code >= 80 && code <= 82) return "/public/middlerain.png";
+        else if (code >= 85 && code <= 86) return "/public/snowatnight.png";
+        else if (code >= 95 && code <= 99) return "/public/nighthunder.png";
+    } else {
+        if (code == 0) return "/public/sunny_light.png";
+        else if (code == 1 || code == 2 || code == 3) return "/public/cloudy.png";
+        else if (code >= 45 && code <= 48) return "/public/fog.png";
+        else if (code >= 51 && code <= 57) return "/public/lightrain1.png";
+        else if (code >= 61 && code <= 67) return "/public/rain.png";
+        else if (code >= 71 && code <= 77) return "/public/snow.png";
+        else if (code >= 80 && code <= 82) return "/public/middlerain.png";
+        else if (code >= 85 && code <= 86) return "/public/snow.png";
+        else if (code >= 95 && code <= 99) return "/public/thunder.png";
+    }
+}   
