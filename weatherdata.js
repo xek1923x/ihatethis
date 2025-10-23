@@ -93,7 +93,7 @@ async function renderHourly(hourlyData, currentHour) {
 
 function getWeatherIcon(code, isDay) {
     if (isDay == 0) {
-        if (code == 0) return "/public/moon.png";
+        if (code == 0) return "../public/moon.png";
         else if (code == 1 || code == 2 || code == 3) return "/public/cloudy.png";
         else if (code >= 45 && code <= 48) return "/public/fog.png";
         else if (code >= 51 && code <= 57) return "/public/lightrain1.png";
@@ -103,7 +103,7 @@ function getWeatherIcon(code, isDay) {
         else if (code >= 85 && code <= 86) return "/public/snowatnight.png";
         else if (code >= 95 && code <= 99) return "/public/nighthunder.png";
     } else {
-        if (code == 0) return '/public/sunny.png';
+        if (code == 0) return '../public/sunny.png';
         else if (code == 1 || code == 2 || code == 3) return "/public/cloudy.png";
         else if (code >= 45 && code <= 48) return "/public/fog.png";
         else if (code >= 51 && code <= 57) return "/public/lightrain1.png";
